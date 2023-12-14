@@ -18,6 +18,14 @@ const ComponentScreen = ({navigation}: ComponentScreenProps) => {
         title="Section3"
         onPress={() => navigation.navigate('Section3')}
       />
+      <Button
+        title="Section5"
+        onPress={() => navigation.navigate('Section5')}
+      />
+      <Button
+        title="Section6"
+        onPress={() => navigation.navigate('Section6')}
+      />
     </View>
   );
 };

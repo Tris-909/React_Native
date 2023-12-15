@@ -6,6 +6,7 @@ import Section6 from './Section6';
 import ColorApp from './Section6/ColorApp';
 import ColorChangingApp from './Section6/ColorChangingApp';
 import TextInputApp from './Section6/TextInputApp';
+import Section7 from './Section7';
 
 export {
   ComponentScreen,
@@ -16,4 +17,5 @@ export {
   ColorApp,
   ColorChangingApp,
   TextInputApp,
+  Section7,
 };

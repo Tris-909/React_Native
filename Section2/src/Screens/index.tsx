@@ -7,6 +7,9 @@ import ColorApp from './Section6/ColorApp';
 import ColorChangingApp from './Section6/ColorChangingApp';
 import TextInputApp from './Section6/TextInputApp';
 import Section7 from './Section7';
+import Section7_5 from './Section7.5/Section7,5';
+import SwitchShowCase from './Section7.5/SwitchComponent';
+import Section8 from './Secion8';
 
 export {
   ComponentScreen,
@@ -18,4 +21,7 @@ export {
   ColorChangingApp,
   TextInputApp,
   Section7,
+  Section7_5,
+  SwitchShowCase,
+  Section8,
 };

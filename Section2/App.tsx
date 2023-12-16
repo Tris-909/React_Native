@@ -16,6 +16,9 @@ import {
   ColorChangingApp,
   TextInputApp,
   Section7,
+  Section7_5,
+  SwitchShowCase,
+  Section8,
 } from './src/Screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -25,8 +28,11 @@ const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Section7">
-        <Stack.Screen name="Home" component={ComponentScreen} />
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Learning React Native"
+          component={ComponentScreen}
+        />
         <Stack.Screen name="Section2" component={ExcerciseSection2} />
         <Stack.Screen name="Section3" component={ExcerciseSection3} />
         <Stack.Screen name="Section5" component={ExcerciseSection5} />
@@ -38,6 +44,9 @@ function App(): React.JSX.Element {
         />
         <Stack.Screen name="Section6-TextInputApp" component={TextInputApp} />
         <Stack.Screen name="Section7" component={Section7} />
+        <Stack.Screen name="Section7_5" component={Section7_5} />
+        <Stack.Screen name="SwitchShowCase" component={SwitchShowCase} />
+        <Stack.Screen name="Section8" component={Section8} />
       </Stack.Navigator>
     </NavigationContainer>
   );

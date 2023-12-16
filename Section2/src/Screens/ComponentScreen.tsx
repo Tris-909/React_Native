@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Button, StyleSheet} from 'react-native';
+import {View, Button} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 
 export interface ComponentScreenProps {
@@ -9,32 +9,41 @@ export interface ComponentScreenProps {
 const ComponentScreen = ({navigation}: ComponentScreenProps) => {
   return (
     <View>
-      <Text style={styles.textStyle}>Section Screens</Text>
       <Button
-        title="Section2"
+        title="Section 1: Set up development environment"
+        disabled={true}
+      />
+      <Button
+        title="Section 2: Working with Content"
         onPress={() => navigation.navigate('Section2')}
       />
       <Button
-        title="Section3"
+        title="Section 3: Wokring with List Items"
         onPress={() => navigation.navigate('Section3')}
       />
+      <Button title="Section 4: Navigating between screens" disabled={true} />
       <Button
-        title="Section5"
+        title="Section 5: Reusable components"
         onPress={() => navigation.navigate('Section5')}
       />
       <Button
-        title="Section6"
+        title="Section 6: State Management"
         onPress={() => navigation.navigate('Section6')}
+      />
+      <Button
+        title="Section 7: SCreen Layout"
+        onPress={() => navigation.navigate('Section7')}
+      />
+      <Button
+        title="Section 7.5: Extra Core Components"
+        onPress={() => navigation.navigate('Section7_5')}
+      />
+      <Button
+        title="Section 8: Restaurant Search App"
+        onPress={() => navigation.navigate('Section8')}
       />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  textStyle: {
-    color: 'crimson',
-    fontSize: 30,
-  },
-});
 
 export default ComponentScreen;

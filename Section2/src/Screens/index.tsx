@@ -9,7 +9,8 @@ import TextInputApp from './Section6/TextInputApp';
 import Section7 from './Section7';
 import Section7_5 from './Section7.5/Section7,5';
 import SwitchShowCase from './Section7.5/SwitchComponent';
-import Section8 from './Secion8';
+import {Section8, FoodDetailScreen} from './Section8';
+import {Section12Self, CreateBlogScreen, DetailBlogScreen} from './Section12';
 
 export {
   ComponentScreen,
@@ -24,4 +25,8 @@ export {
   Section7_5,
   SwitchShowCase,
   Section8,
+  FoodDetailScreen,
+  Section12Self,
+  CreateBlogScreen,
+  DetailBlogScreen,
 };

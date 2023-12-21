@@ -1,27 +1,28 @@
-import React, {useEffect} from 'react';
-import {Box, Text, ThreeDotsIcon, IconButton} from 'native-base';
-import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useContext} from 'react';
+import {Box, Text} from 'native-base';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {EditIconButtonHeader} from './IconButtons';
+import {BlogContext} from './ContextProvider';
 
 export type RootStackParamList = {
-  CreateBlogScreen: {blog: any} | undefined;
+  CreateBlogScreen: {id: string};
 };
 
-const DetailBlogScreen = (props: any) => {
-  const {route} = props;
-  const blog = route.params.item;
+const DetailBlogScreen = () => {
+  const route = useRoute<{key: string; name: string; params: {id: string}}>();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const blogId = route.params?.id;
+  const {filterBlogById} = useContext(BlogContext);
+  const blog = filterBlogById!(blogId);
 
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <IconButton
-          icon={<ThreeDotsIcon />}
-          borderRadius="full"
-          _icon={{color: 'black'}}
+        <EditIconButtonHeader
           onPress={() =>
             navigation.navigate('CreateBlogScreen', {
-              blog: blog,
+              id: blogId,
             })
           }
         />

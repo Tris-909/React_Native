@@ -5,7 +5,12 @@
  * @format
  */
 
-import React, {useState, createContext} from 'react';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NativeBaseProvider} from 'native-base';
+import {ContextProvider} from './src/Screens/Section12/ContextProvider';
+import {IconButtonHeader} from './src/Screens/Section12/IconButtons';
 import {
   ComponentScreen,
   ExcerciseSection2,
@@ -20,39 +25,18 @@ import {
   SwitchShowCase,
   Section8,
   FoodDetailScreen,
-  Section12Self,
+  Section12,
   CreateBlogScreen,
   DetailBlogScreen,
 } from './src/Screens';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {IconButton, AddIcon, NativeBaseProvider} from 'native-base';
-import {BlogType} from './src/Screens/Section12/Self/CreateBlogScreen';
 
 const Stack = createNativeStackNavigator();
 
-const IconButtonHeader = () => {
-  const navigation = useNavigation();
-
-  return (
-    <IconButton
-      icon={<AddIcon />}
-      borderRadius="full"
-      _icon={{color: 'black'}}
-      onPress={() => navigation.navigate('CreateBlogScreen' as never)}
-    />
-  );
-};
-
-export const BlogContext = createContext<BlogType[]>([]);
-
 const App = (): React.JSX.Element => {
-  const [blogs, setBlogs] = useState<BlogType[]>([]);
-
   return (
-    <NativeBaseProvider>
-      <NavigationContainer>
-        <BlogContext.Provider value={blogs}>
+    <ContextProvider>
+      <NativeBaseProvider>
+        <NavigationContainer>
           <Stack.Navigator initialRouteName="BlogList">
             <Stack.Screen
               name="Learning React Native"
@@ -80,31 +64,25 @@ const App = (): React.JSX.Element => {
               component={FoodDetailScreen}
             />
             <Stack.Screen
-              name="Section12Self"
-              component={Section12Self}
+              name="Section12"
+              component={Section12}
               options={{
-                headerTitle: 'Blog List 1.0',
+                headerTitle: 'Blog List',
                 headerRight: () => <IconButtonHeader />,
-              }}
-              initialParams={{
-                onCreateBlog: setBlogs,
               }}
             />
             <Stack.Screen
               name="CreateBlogScreen"
               component={CreateBlogScreen}
-              initialParams={{
-                onCreateBlog: setBlogs,
-              }}
             />
             <Stack.Screen
               name="DetailBlogScreen"
               component={DetailBlogScreen}
             />
           </Stack.Navigator>
-        </BlogContext.Provider>
-      </NavigationContainer>
-    </NativeBaseProvider>
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </ContextProvider>
   );
 };
 

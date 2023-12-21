@@ -1,5 +1,5 @@
-import Section12Self from './Self/Section12Self';
-import CreateBlogScreen from './Self/CreateBlogScreen';
-import DetailBlogScreen from './Self/DetailBlogScreen';
+import Section12 from './Section12';
+import CreateBlogScreen from './CreateBlogScreen';
+import DetailBlogScreen from './DetailBlogScreen';
 
-export {Section12Self, CreateBlogScreen, DetailBlogScreen};
+export {Section12, CreateBlogScreen, DetailBlogScreen};

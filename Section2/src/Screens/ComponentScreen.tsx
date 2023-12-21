@@ -47,7 +47,7 @@ const ComponentScreen = ({navigation}: ComponentScreenProps) => {
       />
       <Button
         title="Section 12 ( Self-Studying ) --> CRUD App"
-        onPress={() => navigation.navigate('Section12Self')}
+        onPress={() => navigation.navigate('Section12')}
       />
     </View>
   );

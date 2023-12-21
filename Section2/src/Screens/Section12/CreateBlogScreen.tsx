@@ -7,57 +7,36 @@ import {
   Box,
   WarningOutlineIcon,
 } from 'native-base';
-import {BlogContext} from '../../../../App';
-import {RouteProp} from '@react-navigation/native';
-import {Keyboard, TouchableWithoutFeedback} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {BlogContext} from './ContextProvider';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {BlogType} from './types';
+import {DismissKeyboard} from './UtilComponent';
 
-export interface BlogType {
-  id: string;
-  title: string;
-  content: string;
-}
+const CreateBlogScreen = () => {
+  const route = useRoute<{key: string; name: string; params: {id: string}}>();
+  const blogId = route.params?.id;
+  const isEdit = typeof blogId !== 'undefined';
+  const {filterBlogById, addBlog, editOneBlogInList} = useContext(BlogContext);
+  const currentEditBlog = filterBlogById!(blogId);
 
-const DismissKeyboard = ({children}: {children: any}) => (
-  <TouchableWithoutFeedback
-    onPress={() => Keyboard.dismiss()}
-    accessible={false}>
-    {children}
-  </TouchableWithoutFeedback>
-);
-
-const CreateBlogScreen = ({
-  route,
-}: {
-  route: RouteProp<{params: {onCreateBlog: any; blog: BlogType}}, 'params'>;
-}) => {
-  const {onCreateBlog} = route.params;
-  const isEdit = route.params?.blog?.title.length > 0;
-  const [title, setTitle] = useState(isEdit ? route.params?.blog?.title : '');
-  const [content, setContent] = useState(
-    isEdit ? route.params?.blog?.content : '',
-  );
+  const [title, setTitle] = useState(isEdit ? currentEditBlog.title : '');
+  const [content, setContent] = useState(isEdit ? currentEditBlog.content : '');
   const [firstLoad, setFirstLoad] = useState(true);
-  const blogs = useContext(BlogContext);
   const navigation = useNavigation();
   const showErrorTitleMessage = !firstLoad && title.length === 0;
   const showErrorContentMessage = !firstLoad && content.length === 0;
 
   const createOrEditNewBlog = () => {
-    const currentEditBlogId = route.params?.blog?.id;
     const blog: BlogType = {
-      id: currentEditBlogId ? currentEditBlogId : Date.now().toString(),
+      id: blogId ? blogId : Date.now().toString(),
       title: title,
       content: content,
     };
 
     if (isEdit) {
-      const editIndex = blogs.findIndex(blog => blog.id === currentEditBlogId);
-      blogs[editIndex] = blog;
-      onCreateBlog(blogs);
+      editOneBlogInList(blog, blogId);
     } else {
-      const newBlogsArray: BlogType[] = [...blogs, blog];
-      onCreateBlog(newBlogsArray);
+      addBlog(blog);
     }
 
     resetForm();
@@ -66,7 +45,7 @@ const CreateBlogScreen = ({
   const resetForm = () => {
     setTitle('');
     setContent('');
-    navigation.navigate('Section12Self' as never);
+    navigation.navigate('Section12' as never);
   };
 
   return (

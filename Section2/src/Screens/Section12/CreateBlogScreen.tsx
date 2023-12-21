@@ -11,9 +11,14 @@ import {BlogContext} from './ContextProvider';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {BlogType} from './types';
 import {DismissKeyboard} from './UtilComponent';
+const {v4: uuidv4} = require('uuid');
 
 const CreateBlogScreen = () => {
-  const route = useRoute<{key: string; name: string; params: {id: string}}>();
+  const route = useRoute<{
+    key: string;
+    name: string;
+    params: {id: any};
+  }>();
   const blogId = route.params?.id;
   const isEdit = typeof blogId !== 'undefined';
   const {filterBlogById, addBlog, editOneBlogInList} = useContext(BlogContext);
@@ -28,7 +33,7 @@ const CreateBlogScreen = () => {
 
   const createOrEditNewBlog = () => {
     const blog: BlogType = {
-      id: blogId ? blogId : Date.now().toString(),
+      id: blogId ? blogId : uuidv4,
       title: title,
       content: content,
     };

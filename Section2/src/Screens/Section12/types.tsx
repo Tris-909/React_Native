@@ -1,5 +1,6 @@
+import Realm from 'realm';
 export interface BlogType {
-  id: string;
+  id: Realm.BSON.ObjectId;
   title: string;
   content: string;
 }

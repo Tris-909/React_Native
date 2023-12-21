@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Button} from 'react-native';
+import {ScrollView, Button} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 
 export interface ComponentScreenProps {
@@ -8,7 +8,7 @@ export interface ComponentScreenProps {
 
 const ComponentScreen = ({navigation}: ComponentScreenProps) => {
   return (
-    <View>
+    <ScrollView>
       <Button
         title="Section 1 --> Set up development environment"
         disabled={true}
@@ -49,7 +49,11 @@ const ComponentScreen = ({navigation}: ComponentScreenProps) => {
         title="Section 12 ( Self-Studying ) --> CRUD App"
         onPress={() => navigation.navigate('Section12')}
       />
-    </View>
+      <Button
+        title="Section 13 --> Using API to CRUD data for Section12"
+        disabled={true}
+      />
+    </ScrollView>
   );
 };
 

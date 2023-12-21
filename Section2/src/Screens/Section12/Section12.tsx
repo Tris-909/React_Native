@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {BlogContext} from './ContextProvider';
 import {FlatList, Text} from 'native-base';
@@ -10,13 +10,13 @@ type Nav = {
 };
 
 const Section12 = () => {
-  const {blogs, setBlogs} = useContext(BlogContext);
+  const {blogs, setBlogs, loadExistingBlogs, deleteOneBlog} =
+    useContext(BlogContext);
   const navigation = useNavigation<Nav>();
 
-  const removeBlogById = (id: string) => {
-    const newBlogs = blogs.filter(item => item.id !== id);
-    setBlogs(newBlogs);
-  };
+  useEffect(() => {
+    loadExistingBlogs();
+  }, []);
 
   return (
     <View>
@@ -43,7 +43,7 @@ const Section12 = () => {
               }}>
               <Text>{event.item.title}</Text>
               <DeleteIconButton
-                removeBlogById={() => removeBlogById(event.item.id)}
+                removeBlogById={() => deleteOneBlog(event.item.id)}
               />
             </View>
           </TouchableOpacity>

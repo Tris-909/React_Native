@@ -1,4 +1,4 @@
-import ComponentScreen from './ComponentScreen';
+import SectionListScreen from './SectionListScreen';
 import ExcerciseSection2 from './ExerciseScreenSection2';
 import ExcerciseSection3 from './ExerciseSection3';
 import ExcerciseSection5 from './ExerciseSection5';
@@ -11,9 +11,10 @@ import Section7_5 from './Section7.5/Section7,5';
 import SwitchShowCase from './Section7.5/SwitchComponent';
 import {Section8, FoodDetailScreen} from './Section8';
 import {Section12, CreateBlogScreen, DetailBlogScreen} from './Section12';
+import {Auth, Section15_HomeScreen} from './Section15/Screens';
 
 export {
-  ComponentScreen,
+  SectionListScreen,
   ExcerciseSection2,
   ExcerciseSection3,
   ExcerciseSection5,
@@ -29,4 +30,6 @@ export {
   Section12,
   CreateBlogScreen,
   DetailBlogScreen,
+  Auth,
+  Section15_HomeScreen,
 };
